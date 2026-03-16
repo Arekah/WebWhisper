@@ -1,0 +1,6 @@
+venv/
+.env
+__pycache__/
+voice_input.wav
+*.pyc
+*.wav

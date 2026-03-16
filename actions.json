@@ -1,0 +1,7 @@
+```json
+[
+  {"action":"open","url":"https://en.wikipedia.org"},
+  {"action":"type","selector":"input#searchInput","text":"artificial intelligence"},
+  {"action":"press","selector":"input#searchInput","key":"Enter"}
+]
+```

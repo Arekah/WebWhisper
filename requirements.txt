@@ -1,0 +1,7 @@
+boto3
+python-dotenv
+pyaudio
+SpeechRecognition
+flask
+playwright
+pyttsx3
