@@ -211,13 +211,24 @@
                     .then(res => res.json())
                     .then(data => {
                         updateUI(data);
+
                         if (data.state === 'idle' && isRunning) {
                             clearInterval(interval);
                             isRunning = false;
+
+                            // Reset mic button
                             const micBtn = document.getElementById('micBtn');
                             micBtn.classList.remove('listening', 'processing');
                             micBtn.innerHTML = '🎤';
+
+                            // Clear cards
+                            document.getElementById('transcriptCard').classList.add('hidden');
+                            document.getElementById('summaryCard').classList.add('hidden');
+
+                            // Show done message
+                            document.getElementById('statusMsg').textContent = '✅ Done! Press mic or type for next command.';
                         }
+
                         if (data.state === 'processing') {
                             const micBtn = document.getElementById('micBtn');
                             micBtn.classList.remove('listening');
