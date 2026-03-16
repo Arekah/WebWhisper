@@ -54,10 +54,12 @@ def listen():
 
 @app.route("/text", methods=["POST"])
 def text_input():
+    # Get text INSIDE request context before starting thread
+    data = request.get_json()
+    transcript = data.get("text", "").strip() if data else ""
+
     def run():
         try:
-            data = request.get_json()
-            transcript = data.get("text", "").strip()
             if not transcript:
                 status["state"] = "idle"
                 status["message"] = "❌ No text entered!"
