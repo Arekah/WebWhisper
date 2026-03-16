@@ -44,7 +44,10 @@
             margin: 0 auto 30px;
         }
         .mic-button:hover { transform: scale(1.05); }
-        .mic-button.listening { animation: pulse 1s infinite; background: linear-gradient(135deg, #ff4444, #ff8800); }
+        .mic-button.listening {
+            animation: pulse 1s infinite;
+            background: linear-gradient(135deg, #ff4444, #ff8800);
+        }
         .mic-button.processing { animation: spin-glow 2s infinite; }
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
@@ -130,24 +133,20 @@
 
         <button class="mic-button" id="micBtn" onclick="startListening()">🎤</button>
 
-        <!-- Status -->
         <div class="card" id="statusCard">
             <div class="status-message" id="statusMsg">Ready! Press mic or type a command.</div>
         </div>
 
-        <!-- Feature 3: You said + what Nova will do -->
         <div class="card card-blue hidden" id="transcriptCard">
             <div class="label label-blue">You said</div>
             <div class="transcript-text" id="transcriptText"></div>
         </div>
 
-        <!-- Feature 1 & 3: Page summary read aloud -->
         <div class="card card-green hidden" id="summaryCard">
             <div class="label label-green">🔊 Nova says</div>
             <div class="summary-text" id="summaryText"></div>
         </div>
 
-        <!-- Feature 2: Command history -->
         <div class="card card-purple hidden" id="historyCard">
             <div class="label label-purple">Recent Commands</div>
             <div class="history-list" id="historyList"></div>
@@ -160,14 +159,14 @@
                 type="text"
                 id="textInput"
                 class="text-input"
-                placeholder="e.g. open YouTube and search for chicken recipe"
+                placeholder="e.g. open YouTube search for Python tutorials and open first video"
                 onkeypress="if(event.key==='Enter') submitText()"
             />
             <button class="go-button" onclick="submitText()">Go ➤</button>
         </div>
 
         <div class="hint">
-            Try: "search weather in Karachi" · "YouTube chicken recipe" · "Wikipedia AI"
+            Try: "search weather in Karachi" · "YouTube chicken recipe" · "Wikipedia AI and scroll down"
         </div>
 
         <div class="powered-by">
@@ -232,13 +231,11 @@
         function updateUI(data) {
             document.getElementById('statusMsg').textContent = data.message;
 
-            // Feature 3: Show transcript
             if (data.transcript) {
                 document.getElementById('transcriptCard').classList.remove('hidden');
                 document.getElementById('transcriptText').textContent = data.transcript;
             }
 
-            // Feature 1: Show what Nova said
             if (data.actions && data.actions.length > 0) {
                 const plan = data.actions[0];
                 if (plan.summary) {
@@ -247,7 +244,6 @@
                 }
             }
 
-            // Feature 2: Show history
             if (data.history && data.history.length > 0) {
                 document.getElementById('historyCard').classList.remove('hidden');
                 const list = document.getElementById('historyList');

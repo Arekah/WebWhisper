@@ -10,7 +10,6 @@ status = {
     "message": "Ready! Press mic or type a command.",
     "transcript": "",
     "actions": [],
-    "page_summary": "",
     "history": []
 }
 
@@ -33,7 +32,6 @@ def listen():
             status["message"] = "🔴 Speak now! You have 7 seconds..."
             status["transcript"] = ""
             status["actions"] = []
-            status["page_summary"] = ""
 
             transcript = listen_and_transcribe()
 
@@ -76,12 +74,9 @@ def text_input():
 
 
 def process_instruction(transcript: str):
-    """Shared logic for both voice and text input"""
     status["transcript"] = transcript
     status["state"] = "processing"
     status["message"] = "🧠 Nova is planning your task..."
-
-    # Feature 2: Show history
     status["history"] = conversation_context["history"][-5:]
 
     plan = ask_nova(transcript)

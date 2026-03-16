@@ -5,8 +5,9 @@ from nova_agent import run_browser_task
 
 def main():
     print("=" * 50)
-    print("🦾 Welcome to WebWhisper")
+    print("🎤 Welcome to WebWhisper")
     print("Voice-First AI Browser Assistant")
+    print("Whisper to the Web. It Listens.")
     print("=" * 50)
 
     while True:
@@ -19,7 +20,7 @@ def main():
         instruction = listen_and_transcribe()
 
         if not instruction:
-            print("❌ Didn't catch that. Try again.")
+            print("Oops! Didn't catch that. Try again.")
             continue
 
         print(f"\n✅ Understood: {instruction}")
