@@ -359,7 +359,9 @@ def run_browser_task(instruction: str):
 
         print("\n✅ Done! Close the browser when finished.")
         try:
-            page.wait_for_event("close", timeout=300000)
+            # Check every second if browser is still open
+            while browser.is_connected():
+                page.wait_for_timeout(1000)
         except Exception:
             pass
         try:
@@ -367,7 +369,6 @@ def run_browser_task(instruction: str):
         except Exception:
             pass
         print("👋 Browser closed.")
-
 
 if __name__ == "__main__":
     run_browser_task("open YouTube search for Python tutorials and open first video")
